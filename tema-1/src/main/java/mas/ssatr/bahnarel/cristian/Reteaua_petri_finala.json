@@ -1,0 +1,192 @@
+{
+	"locatii": [{
+			"locatie1": {
+				"pre": "null",
+				"post": "tranzitie1",
+				"temp": 1,
+				"jeton": 1
+			}
+		},
+		{
+			"locatie2": {
+				"pre": "tranzitie1",
+				"post": "tranzitie2",
+				"temp": 1,
+				"jeton": 0
+			}
+		},
+		{
+			"locatie3": {
+				"pre": "tranzitie1",
+				"post": "tranzitie3",
+				"temp": 1,
+				"jeton": 0
+			}
+		},
+		{
+			"locatie4": {
+				"pre": "tranzitie2",
+				"post": "tranzitie4",
+				"temp": 1,
+				"jeton": 0
+			}
+		},
+		{
+			"locatie5": {
+				"pre": ["tranzitie8","tranzitie9"],
+				"post": ["tranzitie4","tranzitie7"],
+				"temp": 1,
+				"jeton": 1
+			}
+		},
+		{
+			"locatie6": {
+				"pre": "tranzitie3",
+				"post": "tranzitie5",
+				"temp": 1,
+				"jeton": 0
+			}
+		},
+		{
+			"locatie7": {
+				"pre": ["tranzitie8","tranzitie9"],
+				"post": ["tranzitie5","tranzitie6"],
+				"temp": 1,
+				"jeton": 1
+			}
+		},
+		{
+			"locatie8": {
+				"pre": "tranzitie4",
+				"post": "tranzitie6",
+				"temp": 1,
+				"jeton": 0
+			}
+		},
+		{
+			"locatie9": {
+				"pre": "tranzitie5",
+				"post": "tranzitie7",
+				"temp": 1,
+				"jeton": 0
+			}
+		},
+		{
+			"locatie10": {
+				"pre": "tranzitie6",
+				"post": "tranzitie8",
+				"temp": 1,
+				"jeton": 0
+			}
+		},
+		{
+			"locatie11": {
+				"pre": "tranzitie7",
+				"post": "tranzitie9",
+				"temp": 1,
+				"jeton": 0
+			}
+		},
+		{
+			"locatie12": {
+				"pre": "tranzitie8",
+				"post": "tranzitie10",
+				"temp": 1,
+				"jeton": 0
+			}
+		},
+		{
+			"locatie13": {
+				"pre": "tranzitie9",
+				"post": "tranzitie10",
+				"temp": 1,
+				"jeton": 0
+			}
+		},
+		{
+			"locatie14": {
+				"pre": "tranzitie10",
+				"post": "tranzitie11",
+				"temp": 1,
+				"jeton": 0
+			}
+		}
+	],
+	"tranzitii": [{
+		"tranzitie1": {
+			"pre": ["locatie1"],
+			"post": ["locatie2","locatie3"],
+			"temp": [1]
+			}
+		},
+		{		
+		"tranzitie2": {
+			"pre": ["locatie2"],
+			"post": ["locatie4"],
+			"temp": [2]
+			}
+		},
+		{		
+		"tranzitie3": {
+			"pre": ["locatie3"],
+			"post": ["locatie6"],
+			"temp": [5]
+			}
+		},
+		{		
+		"tranzitie4": {
+			"pre": ["locatie4","locatie5"],
+			"post": ["locatie8"],
+			"temp": [3,4,5]
+			}
+		},
+		{		
+		"tranzitie5": {
+			"pre": ["locatie6","locatie7"],
+			"post": ["locatie9"],
+			"temp": [3,4,5,6]
+			}
+		},
+		{		
+		"tranzitie6": {
+			"pre": ["locatie7","locatie8"],
+			"post": ["locatie10"],
+			"temp": [4,5]
+			}
+		},
+		{		
+		"tranzitie7": {
+			"pre": ["locatie5","locatie9"],
+			"post": ["locatie11"],
+			"temp": [3,4]
+			}
+		},
+		{		
+		"tranzitie8": {
+			"pre": ["locatie10"],
+			"post": ["locatie5","locatie7","locatie12"],
+			"temp": [1]
+			}
+		},
+		{		
+		"tranzitie9": {
+			"pre": ["locatie11"],
+			"post": ["locatie5","locatie7","locatie13"],
+			"temp": [1]
+			}
+		},
+		{		
+		"tranzitie10": {
+			"pre": ["locatie12","locatie13"],
+			"post": ["locatie14"],
+			"temp": [1]
+			}
+		},
+		{		
+		"tranzitie11": {
+			"pre": ["locatie14"],
+			"post": ["null"],
+			"temp": [1]
+			}
+	}]
+}

@@ -1,0 +1,41 @@
+{
+	"locatii": [{
+			"locatie1": {
+				"pre": "null",
+				"post": "tranzitie1",
+				"temp": 1,
+				"jeton": 1
+			}
+		},
+		{
+			"locatie2": {
+				"pre": "tranzitie1",
+				"post": "tranzitie2",
+				"temp": 1,
+				"jeton": 0
+			}
+		},
+		{
+			"locatie3": {
+				"pre": "tranzitie2",
+				"post": "null",
+				"temp": 1,
+				"jeton": 0
+			}
+		}
+	],
+	"tranzitii": [{
+		"tranzitie1": {
+			"pre": ["locatie1"],
+			"post": ["locatie2"],
+			"temp": [1]
+			}
+		},
+		{		
+		"tranzitie2": {
+			"pre": ["locatie2"],
+			"post": ["locatie3"],
+			"temp": [3,4,5]
+		}
+	}]
+}
