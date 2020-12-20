@@ -1,0 +1,64 @@
+/*
+Example: A tip calculation FIS (fuzzy inference system)
+Calculates tip based on 'servie' and 'food'
+
+If you want to about this example (and fuzzy logic), please
+read Matlab's tutorial on fuzzy logic toolbox
+http://www.mathworks.com/access/helpdesk/help/pdf_doc/fuzzy/fuzzy.pdf
+
+Pablo Cingolani
+pcingola@users.sourceforge.net
+*/
+
+FUNCTION_BLOCK Temperature_cer3// Block definition (there may be more than one block per file)
+
+VAR_INPUT // Define input variables
+temperature : REAL;
+target : REAL;
+END_VAR
+
+VAR_OUTPUT // Define output variable
+command : REAL;
+END_VAR
+
+FUZZIFY temperature // Fuzzify input variable 'temperature'
+TERM Too_Cold := (0, 0) (10, 1) (21, 0);
+TERM Cold := (11, 0) (21,1) (32, 0);
+TERM Warm := (22, 0) (32, 1) (43, 0);
+TERM Hot := (33, 0) (43, 1) (54, 0);
+TERM Too_Hot := (44, 0) (100, 1);
+END_FUZZIFY
+
+FUZZIFY target// Fuzzify input variable 'target'
+TERM heating := (3,0) (9,1);
+TERM cooling := (1, 1) (7,0);
+END_FUZZIFY
+
+DEFUZZIFY command // Defzzzify output variable 'command'
+TERM zero := (0, 1) (60, 0); 
+TERM slow := (0, 0) (60, 1) (120, 0); 
+TERM normal := (90, 0) (150,1) (210,0);
+TERM fast := (150, 0) (210, 1) (255,0);
+TERM maxi := (240, 0) (255, 1);
+METHOD : COG; // Use 'Center Of Gravity' defuzzification method
+DEFAULT := 0; // Default value is 0 (if no rule activates defuzzifier)
+END_DEFUZZIFY
+
+RULEBLOCK No1
+AND : MIN; // Use 'min' for 'and' (also implicit use 'max' for 'or' to fulfill DeMorgan's Law)
+ACT : MIN; // Use 'min' activation method
+ACCU : MAX; // Use 'max' accumulation method
+
+RULE 1 : IF temperature IS Too_Cold AND target IS heating THEN command IS maxi;
+RULE 2 : IF temperature IS Too_Cold AND target IS cooling THEN command IS zero;
+RULE 3 : IF temperature IS Cold AND target IS heating THEN command IS fast;
+RULE 4 : IF temperature IS Cold AND target IS cooling THEN command IS slow;
+RULE 5 : IF temperature IS Warm AND target IS heating THEN command IS normal;
+RULE 6 : IF temperature IS Warm AND target IS cooling THEN command IS normal;
+RULE 7 : IF temperature IS Hot AND target IS heating THEN command IS slow;
+RULE 8 : IF temperature IS Hot AND target IS cooling THEN command IS fast;
+RULE 9 : IF temperature IS Too_Hot AND target IS heating THEN command IS zero;
+RULE 10 : IF temperature IS Too_Hot AND target IS cooling THEN command IS maxi;
+END_RULEBLOCK
+
+END_FUNCTION_BLOCK
